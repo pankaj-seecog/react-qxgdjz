@@ -11,12 +11,14 @@ class List extends React.Component {
         ...item,
         lastSaved: new Date(),
         editIndex: 0,
-        editStt: false
+        editStt: false,
+        searchTxt : ""
       };
     });
     //map the data end
 
     this.state = {
+      mainData : data,
       companies: data,
       editButton: false
     };
@@ -44,6 +46,20 @@ class List extends React.Component {
   updateFinally = (index, eleVal) => {
     console.log(index, eleVal);
   };
+
+  filterArr = (evt)=>{
+    evt.preventDefault();
+    console.log("==>",this.state.searchTxt)
+let tmpArr = this.state.mainData;
+tmpArr = tmpArr.filter((item)=>{
+  if(item.name==this.state.searchTxt)
+  console.log("Comming")
+return item.name==this.state.searchTxt
+})
+this.setState({
+  companies : tmpArr
+})
+  }
 
   saveData = evt => {
     evt.preventDefault();
@@ -77,6 +93,18 @@ class List extends React.Component {
     return (
       <div>
         <h1>Inside List</h1>
+        <div>
+        <form onSubmit={this.filterArr}>
+<input className="form-control" value={this.state.searchTxt} onChange={
+  (evt)=>{
+    this.setState({
+    searchTxt : evt.target.value})
+  
+  
+  }
+}/>
+</form>
+        </div>
         <table className="table">
           <th>Company</th>
           <th>Type</th>
