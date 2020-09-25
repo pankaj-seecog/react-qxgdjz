@@ -55,7 +55,17 @@ tmpArr = tmpArr.filter((item)=>{
   if(item.name.includes(this.state.searchTxt))
   console.log("Comming")
 // return item.name==this.state.searchTxt
-return item.name.includes(this.state.searchTxt)
+if(item.name != undefined){
+  
+let nm = item.name;
+let x = nm.toLowerCase();
+console.log("**** ",x)
+let ser = this.state.searchTxt;
+let smSer = ser.toLowerCase();
+console.log("^^^^ ",smSer)
+
+return x.includes(smSer)
+}
 })
 console.log("fonal found ",tmpArr)
 if(tmpArr.length >0){
