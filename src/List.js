@@ -48,13 +48,14 @@ class List extends React.Component {
   };
 
   filterArr = (evt)=>{
-    evt.preventDefault();
+    // evt.preventDefault();
     console.log("==>",this.state.searchTxt)
 let tmpArr = this.state.mainData;
 tmpArr = tmpArr.filter((item)=>{
-  if(item.name==this.state.searchTxt)
+  if(item.name.includes(this.state.searchTxt))
   console.log("Comming")
-return item.name==this.state.searchTxt
+// return item.name==this.state.searchTxt
+return item.name.includes(this.state.searchTxt)
 })
 console.log("fonal found ",tmpArr)
 if(tmpArr.length >0){
@@ -109,6 +110,8 @@ this.setState({
   (evt)=>{
     this.setState({
     searchTxt : evt.target.value})
+    console.log("-----")
+    this.filterArr()
   
   
   }
