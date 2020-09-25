@@ -56,9 +56,19 @@ tmpArr = tmpArr.filter((item)=>{
   console.log("Comming")
 return item.name==this.state.searchTxt
 })
+console.log("fonal found ",tmpArr)
+if(tmpArr.length >0){
 this.setState({
   companies : tmpArr
 })
+}
+else{
+this.setState({
+  companies : this.state.mainData
+})
+}
+
+
   }
 
   saveData = evt => {
