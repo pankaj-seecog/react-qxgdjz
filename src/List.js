@@ -48,7 +48,6 @@ console.log(index,eleVal)
 
 saveData=(evt)=>{
   evt.preventDefault()
-console.log("Submitted",this.state.editTxt)
 let tmpArr = this.state.companies;
 tmpArr = tmpArr.map((item,i)=>{
 if(i==this.state.editIndex){
@@ -64,6 +63,24 @@ this.setState({
   companies : tmpArr
 })
 
+}
+
+delRecord = (index)=>{
+let tmpArr = this.state.companies;
+tmpArr = tmpArr.splice(index,1);
+// tmpArr = tmpArr.map((item,i)=>{
+// if(i==index){
+// return {
+//   ...item,
+//   name : this.state.editTxt,
+//   editStt : false,
+// }
+// }
+// return item;
+// })
+this.setState({
+  companies : tmpArr
+})
 }
 
 render(){
@@ -101,7 +118,7 @@ return (
 <td>{}</td>
 <td>
 <button  className="btn btn-sm btn-primary" onClick={()=>this.editArr(i)}>Edit</button>
-<button  className="btn btn-sm btn-danger" onClick={}>Del</button>
+<button  className="btn btn-sm btn-danger" onClick={()=>delRecord(i)}>Del</button>
 </td>
   </tr>
 )
