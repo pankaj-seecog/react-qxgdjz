@@ -47,7 +47,8 @@ console.log(index,eleVal)
 }
 
 saveData=(evt)=>{
-console.log("Submitted")
+  evt.preventDefault()
+console.log("Submitted",this.state.editTxt)
 }
 
 render(){
@@ -65,7 +66,7 @@ return (
 {
 (comp.editStt)?
 <div>
-<form onSubmit={saveData}>
+<form onSubmit={this.saveData}>
 <input className="form-control" value={this.state.editTxt} onChange={(evt)=>{
 
   this.setState({
