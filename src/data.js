@@ -1,4 +1,5 @@
-[
+
+const data = [
     {
       "_id": "5c9e17581b2804c21c89f7b7",
       "name": "CAXT",
@@ -600,3 +601,5 @@
       "company": "TETAK"
     }
   ]
+
+  export default data;
