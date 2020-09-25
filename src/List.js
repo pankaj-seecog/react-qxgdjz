@@ -11,6 +11,7 @@ data = data.map((item)=>{
   return {
     ...item,
     lastSaved : new Date(),
+    editIndex : 0,
     editStt : false
   }
 })
@@ -37,7 +38,6 @@ return {
 }
 return item;
 })
-console.log("The new arr ",JSON.stringify(tmpArr))
 this.setState({companies : tmpArr});
 this.setState()
 }
@@ -49,6 +49,21 @@ console.log(index,eleVal)
 saveData=(evt)=>{
   evt.preventDefault()
 console.log("Submitted",this.state.editTxt)
+let tmpArr = this.state.companies;
+tmpArr = tmpArr.map((item,i)=>{
+if(i==this.state.editIndex){
+return {
+  ...item,
+  name : this.state.editTxt,
+  editStt : false,
+}
+}
+return item;
+})
+this.setState({
+  companies : tmpArr
+})
+
 }
 
 render(){
@@ -59,7 +74,6 @@ render(){
 <th>Company</th><th>Type</th><th>Last saved</th><th>Actions</th>
 {
   this.state.companies.map((comp,i)=>{
-    console.log("==> ",comp.editStt)
 return (
   <tr key={i}>
 <td>
@@ -70,6 +84,7 @@ return (
 <input className="form-control" value={this.state.editTxt} onChange={(evt)=>{
 
   this.setState({
+    editIndex : i,
     editTxt : evt.target.value
   })
 }}/>
@@ -86,7 +101,7 @@ return (
 <td>{}</td>
 <td>
 <button  className="btn btn-sm btn-primary" onClick={()=>this.editArr(i)}>Edit</button>
-<button  className="btn btn-sm btn-danger">Del</button>
+<button  className="btn btn-sm btn-danger" onClick={}>Del</button>
 </td>
   </tr>
 )
